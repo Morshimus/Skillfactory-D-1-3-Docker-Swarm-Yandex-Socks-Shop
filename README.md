@@ -7,8 +7,8 @@
 * [x] - :one: **Подготовить аккаунт в Yandex.Cloud.**
 
 * [x] - :two: **Создать три инстанса в Yandex.Cloud:**
-      - ~~Объединить их в сеть.~~
-      - ~~Добавить внешний IP для доступа к проекту через браузер.~~
+   - ~~Объединить их в сеть.~~
+   - ~~Добавить внешний IP для доступа к проекту через браузер.~~
 
 > Сделано в динамической инвентаризации Ansible.
 
@@ -113,17 +113,17 @@ ${worker_name[ind]} ansible_host=${worker_ipaddr[ind]} ansible_user=${worker_use
 ```
 
 * [x] - :seven: **Для проверки задания необходимо отправить:**
-      - ~~Описание — каким образом и какие команды использовались для решения задания.~~  
+   - ~~Описание — каким образом и какие команды использовались для решения задания.~~  
         > Описано выше
-      - ~~Скриншот страницы в браузере (главной страницы проекта, работающего в Yandex.Cloud).~~
+   - ~~Скриншот страницы в браузере (главной страницы проекта, работающего в Yandex.Cloud).~~
         > Выложено выше
-      - ~~Вывод команды docker service ls.~~
+   - ~~Вывод команды docker service ls.~~
         ![image](https://ams03pap004files.storage.live.com/y4mOr4XU1_CXBMzq75ujggxPPYCTUgSUVKSCKZH_jGHJE5X5wbeke3HtSzgHDd-WgokukvnY_fmj5bcsADvFH87s-swqQmspfRH1isEarMAn_kDivixMV5ehNQPLsegI8-F7-ltqbKIgnYYraj27VmRP2pkZ0w5np6_w1CKyEfs5Fcf7e5wUntmpj9eC-YJUtlV?encodeFailures=1&width=1367&height=278)
-      - ~~Вывод команды docker node ls.~~
+   - ~~Вывод команды docker node ls.~~
         ![image](https://ams03pap004files.storage.live.com/y4mBCMXExrrXH5sx0SOnifkyTV4jxBRlY2PMzV42syibTXvFl825r1FfKpG-eH3Z5z0rJlrEorEp9j5VhQZhJVdXYF0fjCA9lV4sI4S59AFfcWf2ufxXzVZ03QIAJCyakjBOORkolStcz7AbXdVMDHlHWxMCzhuu6UxWpRBLkLvHwKK7MKT63FsXjJWJy-5fp7Y?encodeFailures=1&width=1066&height=113)
 
-* [x] - **Погасить проект.**
-      > Нет, будем продавать носки теперь.
+* [x] -  :eight: **Погасить проект.**
+> Нет, будем продавать носки теперь.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
