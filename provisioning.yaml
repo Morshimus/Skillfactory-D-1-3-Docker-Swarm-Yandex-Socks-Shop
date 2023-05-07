@@ -1,0 +1,48 @@
+---
+- hosts: swarm_managers
+  gather_facts: true
+  become: yes
+  roles:
+    - role: infra/docker
+  tasks:
+    - name: Init Docker Swarm mode
+      shell: |
+        docker swarm init 
+      args:
+        executable: /bin/bash
+      ignore_errors: true
+    - name: Get Mgmt Swarm token
+      shell: |
+        docker swarm join-token -q worker
+      args:
+        executable: /bin/bash      
+      register:  token_swarm_result
+    - name: Set up ansible token_swarm variable
+      set_fact: token_swarm={{ token_swarm_result.stdout }} 
+
+
+- hosts: swarm_workers
+  gather_facts: true
+  become: yes
+  roles:
+    - role: infra/docker
+  tasks:
+    - name: Join workers to Docker Swarm Cluster
+      shell: |
+       docker swarm join --token {{ hostvars[groups['swarm_managers'][0]]['token_swarm'] }} \  
+       {{ hostvars[groups['swarm_managers'][0]]['ansible_eth0']['ipv4']['address'] }}:2377
+      args:
+       executable: /bin/bash
+
+- hosts: swarm_managers
+  become: yes
+  tasks:
+   - name: Copy static file docker-compose.yml to Docker Swarm Manager leader
+     copy:
+      src: docker-compose.yml
+      dest: ~/docker-compose.yml
+   - name: Start service swarm from docker-compose.yml file
+     shell: |
+       docker stack deploy --compose-file ~/docker-compose.yml sockshop-swarm
+     args:
+       executable: /bin/bash

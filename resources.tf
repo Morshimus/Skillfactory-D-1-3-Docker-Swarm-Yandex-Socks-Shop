@@ -67,14 +67,15 @@ module "swarm_manager" {
   ]
 
   vm_vcpu_qty = 2
-  vm_ram_qty  = 2 
+  vm_ram_qty  = 2
   adm_pub_key = tls_private_key.key.public_key_openssh
+  useros      = var.useros
 }
 
 module "swarm_workers" {
   source = "git::https://github.com/Morshimus/yandex-cloud-instance-module?ref=tags/1.0.0"
 
-  for_each = toset(["001","002"])
+  for_each = toset(["001", "002"])
 
   source_image_family = "ubuntu-2204-lts"
 
@@ -100,6 +101,7 @@ module "swarm_workers" {
   vm_vcpu_qty = 2
   vm_ram_qty  = 2
   adm_pub_key = tls_private_key.key.public_key_openssh
+  useros      = var.useros
 }
 
 
@@ -125,9 +127,9 @@ resource "local_file" "yandex_inventory" {
   content  = local.ansible_template
   filename = "${path.module}/yandex_cloud.ini"
 
-  #provisioner "local-exec" {
-  #  command     = "Wait-Event -Timeout 60;wsl -e /bin/bash -c 'cp .vault_pass_D13  ~/.vault_pass_D13 ; chmod 0600 ~/.vault_pass_D13';wsl -e /bin/bash -c 'cp morsh_server_SSH  ~/.ssh/morsh_server_SSH ; chmod 0600 ~/.ssh/morsh_server_SSH'; . ./actions.ps1;ansible-playbook -secret"
-  #  interpreter = ["powershell.exe", "-NoProfile", "-c"]
-  #}
+  provisioner "local-exec" {
+    command     = "Wait-Event -Timeout 60;wsl -e /bin/bash -c 'cp .vault_pass_D13  ~/.vault_pass_D13 ; chmod 0600 ~/.vault_pass_D13';wsl -e /bin/bash -c 'cp morsh_server_SSH  ~/.ssh/morsh_server_SSH ; chmod 0600 ~/.ssh/morsh_server_SSH'; . ./actions.ps1;ansible-playbook -secret"
+    interpreter = ["powershell.exe", "-NoProfile", "-c"]
+  }
 
 }
