@@ -1,0 +1,4 @@
+---
+- src: https://github.com/Morshimus/Skillfactory-D-1-3-Docker-Swarm-Yandex-Socks-Shop-Roles
+  name: infra
+  scm: git 
